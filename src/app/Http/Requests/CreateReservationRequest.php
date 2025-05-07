@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\RoomAvailable;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateReservationRequest extends FormRequest
@@ -25,7 +26,11 @@ class CreateReservationRequest extends FormRequest
     public function rules()
     {
         return [
-            'room_id' => 'required|exists:rooms,id',
+            'room_id' => [
+                'required',
+                'exists:rooms,id',
+                new RoomAvailable(request()->date('reservation_start')),
+            ],
             'reservation_start' => 'required|date',
         ];
     }

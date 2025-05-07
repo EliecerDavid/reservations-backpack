@@ -16,6 +16,10 @@ class Reservation extends Model
     use CrudTrait;
     use HasFactory;
 
+    const STATUS_PENDING = 'pending';
+    const STATUS_ACCEPTED = 'accepted';
+    const STATUS_REJECTED = 'rejected';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -55,5 +59,10 @@ class Reservation extends Model
     public function scopeByBooker(Builder $query, int $bookerId): void
     {
         $query->where('booked_by', $bookerId);
+    }
+
+    public function scopeNotRejected(Builder $query): void
+    {
+        $query->where('status', '!=', self::STATUS_REJECTED);
     }
 }
