@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d36ef3dd86384dbfee27e4aa08e2a1b",
+    "content-hash": "3bd8b266069ce7481dd4763fd3cd62bf",
     "packages": [
         {
             "name": "backpack/basset",
@@ -173,6 +173,66 @@
                 "source": "https://github.com/Laravel-Backpack/CRUD/tree/6.8.2"
             },
             "time": "2025-04-28T09:44:27+00:00"
+        },
+        {
+            "name": "backpack/theme-coreuiv2",
+            "version": "1.2.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravel-Backpack/theme-coreuiv2.git",
+                "reference": "7140e4d3423b658f925185cb18f844e1edee69d6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravel-Backpack/theme-coreuiv2/zipball/7140e4d3423b658f925185cb18f844e1edee69d6",
+                "reference": "7140e4d3423b658f925185cb18f844e1edee69d6",
+                "shasum": ""
+            },
+            "require": {
+                "backpack/crud": "^6.2.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~5|~6",
+                "phpunit/phpunit": "~9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Backpack\\ThemeCoreuiv2\\AddonServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Backpack\\ThemeCoreuiv2\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cristian Tabacitu",
+                    "email": "hello@backpackforlaravel.com",
+                    "homepage": "https://backpackforlaravel.com"
+                }
+            ],
+            "description": "UI that uses CoreUI v2 and Bootstrap v4, provided as a legacy theme for Backpack v6.",
+            "homepage": "https://github.com/backpack/theme-coreuiv2",
+            "keywords": [
+                "Backpack Addon",
+                "Backpack for Laravel",
+                "ThemeCoreuiv2",
+                "backpack",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/Laravel-Backpack/theme-coreuiv2/issues",
+                "source": "https://github.com/Laravel-Backpack/theme-coreuiv2/tree/1.2.8"
+            },
+            "time": "2025-04-01T18:25:58+00:00"
         },
         {
             "name": "brick/math",
@@ -6292,6 +6352,72 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "backpack/generators",
+            "version": "v4.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravel-Backpack/Generators.git",
+                "reference": "cd193adfe75573ff59033e473bbb2e2574a05f61"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Generators/zipball/cd193adfe75573ff59033e473bbb2e2574a05f61",
+                "reference": "cd193adfe75573ff59033e473bbb2e2574a05f61",
+                "shasum": ""
+            },
+            "require": {
+                "backpack/crud": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Backpack\\Generators\\GeneratorsServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Backpack\\Generators\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Cristian Tabacitu",
+                    "email": "tabacitu@backpackforlaravel.com",
+                    "homepage": "https://backpackforlaravel.com",
+                    "role": "Lead Developer & Maintainer"
+                },
+                {
+                    "name": "Cristian Tone",
+                    "email": "cristitone@outlook.com",
+                    "homepage": "http://updivision.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generate files for laravel projects",
+            "homepage": "https://github.com/laravel-backpack/generators",
+            "keywords": [
+                "config",
+                "generators",
+                "model",
+                "request",
+                "view"
+            ],
+            "support": {
+                "issues": "https://github.com/Laravel-Backpack/Generators/issues",
+                "source": "https://github.com/Laravel-Backpack/Generators/tree/v4.0.7"
+            },
+            "time": "2024-10-15T10:41:40+00:00"
+        },
         {
             "name": "fakerphp/faker",
             "version": "v1.24.1",
