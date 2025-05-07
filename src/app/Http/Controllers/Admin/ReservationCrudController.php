@@ -30,6 +30,19 @@ class ReservationCrudController extends CrudController
         CRUD::setModel(\App\Models\Reservation::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/reservation');
         CRUD::setEntityNameStrings('reservation', 'reservations');
+
+        CRUD::denyAccess(['delete']);
+
+        if (backpack_user()->isAdmin()) {
+            CRUD::denyAccess(['create']);
+        }
+
+        if (backpack_user()->isClient()) {
+            CRUD::denyAccess(['update']);
+
+            $userId = backpack_auth()->id();
+            CRUD::addBaseClause('byBooker', $userId);
+        }
     }
 
     /**
@@ -47,13 +60,17 @@ class ReservationCrudController extends CrudController
                     $q->where('name', 'like', '%' . $searchTerm . '%');
                 });
             });
-        CRUD::column('booked_by')->type('text')
-            ->value(fn($reservation) => $reservation->booker->name)
-            ->searchLogic(function ($query, $column, $searchTerm) {
-                $query->orWhereHas('booker', function ($q) use ($searchTerm) {
-                    $q->where('name', 'like', '%' . $searchTerm . '%');
+
+        if (backpack_user()->isAdmin()) {
+            CRUD::column('booked_by')->type('text')
+                ->value(fn($reservation) => $reservation->booker->name)
+                ->searchLogic(function ($query, $column, $searchTerm) {
+                    $query->orWhereHas('booker', function ($q) use ($searchTerm) {
+                        $q->where('name', 'like', '%' . $searchTerm . '%');
+                    });
                 });
-            });
+        }
+
         CRUD::column('status')->type('text');
         CRUD::column('reservation_start')->type('datetime');
         CRUD::column('reservation_end')->type('datetime');
