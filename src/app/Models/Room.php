@@ -22,7 +22,6 @@ class Room extends Model
      */
     protected $fillable = [
         'name',
-        'created_by',
         'description',
     ];
 
