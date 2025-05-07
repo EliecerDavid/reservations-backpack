@@ -40,8 +40,20 @@ class ReservationCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('room')->type('text')->value(fn($reservation) => $reservation->room->name);
-        CRUD::column('booked_by')->type('text')->value(fn($reservation) => $reservation->booker->name);
+        CRUD::column('room')->type('text')
+            ->value(fn($reservation) => $reservation->room->name)
+            ->searchLogic(function ($query, $column, $searchTerm) {
+                $query->orWhereHas('room', function ($q) use ($searchTerm) {
+                    $q->where('name', 'like', '%' . $searchTerm . '%');
+                });
+            });
+        CRUD::column('booked_by')->type('text')
+            ->value(fn($reservation) => $reservation->booker->name)
+            ->searchLogic(function ($query, $column, $searchTerm) {
+                $query->orWhereHas('booker', function ($q) use ($searchTerm) {
+                    $q->where('name', 'like', '%' . $searchTerm . '%');
+                });
+            });
         CRUD::column('status')->type('text');
         CRUD::column('reservation_start')->type('datetime');
         CRUD::column('reservation_end')->type('datetime');
