@@ -29,6 +29,12 @@ class UserCrudController extends CrudController
         CRUD::setModel(\App\Models\User::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/user');
         CRUD::setEntityNameStrings('user', 'users');
+
+        CRUD::denyAccess(['create', 'update', 'delete']);
+
+        if (backpack_user()->isClient()) {
+            CRUD::denyAccess('list');
+        }
     }
 
     /**
