@@ -25,7 +25,7 @@ class CreateReservationRequest extends FormRequest
     public function rules()
     {
         return [
-            'room_id' => 'required|exists:reservations,id',
+            'room_id' => 'required|exists:rooms,id',
             'reservation_start' => 'required|date',
         ];
     }
