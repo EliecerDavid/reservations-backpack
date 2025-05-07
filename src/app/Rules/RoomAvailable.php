@@ -41,6 +41,6 @@ class RoomAvailable implements ValidationRule
             return;
         }
 
-        $fail('The :attribute is not available at ' . $this->reservationStart . '.');
+        $fail('The :attribute is not available at ' . $this->reservationStart->format('m/d/Y, h:i A') . '.');
     }
 }
