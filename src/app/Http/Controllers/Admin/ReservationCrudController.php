@@ -76,6 +76,8 @@ class ReservationCrudController extends CrudController
         CRUD::column('status')->type('text');
         CRUD::column('reservation_start')->type('datetime');
         CRUD::column('reservation_end')->type('datetime');
+
+        CRUD::button('export')->stack('top')->view('crud::buttons.export');
     }
 
     /**
