@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ReservationsExport;
 use App\Http\Requests\CreateReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -124,5 +125,10 @@ class ReservationCrudController extends CrudController
         CRUD::field('status')->type('select_from_array')->options(['pending' => 'pending', 'accepted' => 'accepted', 'rejected' => 'rejected']);
         CRUD::field('reservation_start')->type('datetime')->attributes(['disabled' => 'disabled']);
         CRUD::field('reservation_end')->type('datetime')->attributes(['disabled' => 'disabled']);
+    }
+
+    public function export()
+    {
+        return (new ReservationsExport())->download('reservations.xlsx');
     }
 }
