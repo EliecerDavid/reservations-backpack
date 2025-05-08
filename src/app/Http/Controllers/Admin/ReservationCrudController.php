@@ -36,6 +36,7 @@ class ReservationCrudController extends CrudController
 
         if (backpack_user()->isAdmin()) {
             CRUD::denyAccess(['create']);
+            CRUD::allowAccess(['export']);
         }
 
         if (backpack_user()->isClient()) {
@@ -129,6 +130,7 @@ class ReservationCrudController extends CrudController
 
     public function export()
     {
+        CRUD::hasAccessOrFail('export');
         return (new ReservationsExport())->download('reservations.xlsx');
     }
 }
