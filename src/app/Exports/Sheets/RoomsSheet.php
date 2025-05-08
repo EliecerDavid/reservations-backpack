@@ -5,9 +5,12 @@ namespace App\Exports\Sheets;
 use App\Models\Room;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class RoomsSheet implements FromView, WithTitle
+class RoomsSheet implements FromView, WithTitle, WithStyles, ShouldAutoSize
 {
     /**
      * @return View
@@ -37,5 +40,15 @@ class RoomsSheet implements FromView, WithTitle
     public function title(): string
     {
         return 'Rooms';
+    }
+
+    /**
+     * @return array
+     */
+    public function styles(Worksheet $sheet): array
+    {
+        return [
+            1 => ['font' => ['bold' => true]],
+        ];
     }
 }

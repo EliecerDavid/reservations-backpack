@@ -5,9 +5,12 @@ namespace App\Exports\Sheets;
 use App\Models\Reservation;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ReservationsSheet implements FromView, WithTitle
+class ReservationsSheet implements FromView, WithTitle, WithStyles, ShouldAutoSize
 {
     /**
      * @return View
@@ -30,5 +33,15 @@ class ReservationsSheet implements FromView, WithTitle
     public function title(): string
     {
         return 'Reservations';
+    }
+
+    /**
+     * @return array
+     */
+    public function styles(Worksheet $sheet): array
+    {
+        return [
+            1 => ['font' => ['bold' => true]],
+        ];
     }
 }
