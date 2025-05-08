@@ -7,7 +7,7 @@ up:             ## run containers
 	docker compose run --rm app composer install
 	$(MAKE) create-env
 	docker compose run --rm app php artisan migrate
-	docker compose run --rm app php artisan basset:install
+	docker compose run --rm app php artisan storage:link
 
 down:           ## stop and remove containers
 	docker compose stop
