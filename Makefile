@@ -26,3 +26,9 @@ create-env:     ## create env file
 		cp ./src/.env.example ./src/.env;\
 		docker compose run --rm app php artisan key:generate;\
 	fi
+
+pint_analyze:   ## analyze errors of style of code with Laravel pint
+	docker compose run --rm app ./vendor/bin/pint -v
+
+pint_repair:    ## repair style of code with Laravel pint
+	docker compose run --rm app ./vendor/bin/pint --repair

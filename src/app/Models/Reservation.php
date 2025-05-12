@@ -16,9 +16,9 @@ class Reservation extends Model
     use CrudTrait;
     use HasFactory;
 
-    const STATUS_PENDING = 'pending';
-    const STATUS_ACCEPTED = 'accepted';
-    const STATUS_REJECTED = 'rejected';
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_ACCEPTED = 'accepted';
+    public const STATUS_REJECTED = 'rejected';
 
     /**
      * The attributes that are mass assignable.

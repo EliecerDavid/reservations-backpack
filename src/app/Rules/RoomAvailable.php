@@ -2,7 +2,6 @@
 
 namespace App\Rules;
 
-use App\Models\Reservation;
 use App\Models\Room;
 use Carbon\Carbon;
 use Closure;

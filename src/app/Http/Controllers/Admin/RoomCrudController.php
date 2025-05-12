@@ -44,7 +44,7 @@ class RoomCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('name')->type('text');
-        CRUD::column('created_by')->type('text')->value(fn($room) => $room->creator->name);
+        CRUD::column('created_by')->type('text')->value(fn ($room) => $room->creator->name);
         CRUD::column('description')->type('text');
     }
 
@@ -58,7 +58,7 @@ class RoomCrudController extends CrudController
     {
         CRUD::column('name')->type('text');
         CRUD::column('description')->type('textarea');
-        CRUD::column('created_by')->type('text')->value(fn($room) => $room->creator->name);
+        CRUD::column('created_by')->type('text')->value(fn ($room) => $room->creator->name);
 
         CRUD::column('created_at')->type('datetime');
         CRUD::column('updated_at')->type('datetime');

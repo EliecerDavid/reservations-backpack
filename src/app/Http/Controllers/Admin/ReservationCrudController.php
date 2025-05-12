@@ -56,7 +56,7 @@ class ReservationCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('room')->type('text')
-            ->value(fn($reservation) => $reservation->room->name)
+            ->value(fn ($reservation) => $reservation->room->name)
             ->searchLogic(function ($query, $column, $searchTerm) {
                 $query->orWhereHas('room', function ($q) use ($searchTerm) {
                     $q->where('name', 'like', '%' . $searchTerm . '%');
@@ -65,7 +65,7 @@ class ReservationCrudController extends CrudController
 
         if (backpack_user()->isAdmin()) {
             CRUD::column('booked_by')->type('text')
-                ->value(fn($reservation) => $reservation->booker->name)
+                ->value(fn ($reservation) => $reservation->booker->name)
                 ->searchLogic(function ($query, $column, $searchTerm) {
                     $query->orWhereHas('booker', function ($q) use ($searchTerm) {
                         $q->where('name', 'like', '%' . $searchTerm . '%');
@@ -88,12 +88,12 @@ class ReservationCrudController extends CrudController
      */
     protected function setupShowOperation()
     {
-        CRUD::column('room')->type('text')->value(fn($reservation) => $reservation->room->name);
-        CRUD::column('booked_by')->type('text')->value(fn($reservation) => $reservation->booker->name);
+        CRUD::column('room')->type('text')->value(fn ($reservation) => $reservation->room->name);
+        CRUD::column('booked_by')->type('text')->value(fn ($reservation) => $reservation->booker->name);
         CRUD::column('status')->type('text');
         CRUD::column('reservation_start')->type('datetime');
         CRUD::column('reservation_end')->type('datetime');
-        CRUD::column('reviewed_by')->type('text')->value(fn($reservation) => $reservation->reviewer?->name);
+        CRUD::column('reviewed_by')->type('text')->value(fn ($reservation) => $reservation->reviewer?->name);
 
         CRUD::column('created_at')->type('datetime');
         CRUD::column('updated_at')->type('datetime');
