@@ -7,7 +7,10 @@ up:             ## run containers
 	docker compose run --rm app composer install
 	$(MAKE) create-env
 	docker compose run --rm app php artisan migrate
-	docker compose run --rm app php artisan storage:link
+
+	@if [ ! -L "./src/public/storage" ]; then \
+		docker compose run --rm app php artisan storage:link; \
+	fi
 
 down:           ## stop and remove containers
 	docker compose stop
